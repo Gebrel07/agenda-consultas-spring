@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments :: head}"></head>
+
+<body>
+    <nav th:replace="~{fragments :: nav}"></nav>
+
+    <div class="container">
+        <div th:if="${successMessage}" th:insert="~{fragments :: alert('success', ${successMessage})}"></div>
+
+        <div class="d-flex justify-content-between">
+            <h2>Editar paciente</h2>
+            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-delete">Deletar</button>
+        </div>
+
+        <form th:replace="~{paciente/form-paciente :: formPaciente(${paciente})}"></form>
+    </div>
+
+    <footer th:replace="~{fragments :: footer}"></footer>
+
+    <div
+        th:replace="~{fragments :: modalDelete('Excluir paciente', 'Este paciente será excluído', @{/pacientes/{id}/deletar(id=${paciente.id})})}">
+    </div>
+</body>
+
+</html>
