@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments :: head}"></head>
+
+<body>
+    <nav th:replace="~{fragments :: nav}"></nav>
+
+    <div class="container">
+        <div th:if="${dangerMessage}" th:insert="~{fragments :: alert('danger', ${dangerMessage})}"></div>
+        <div th:if="${successMessage}" th:insert="~{fragments :: alert('success', ${successMessage})}"></div>
+
+        <div class="d-flex justify-content-between mb-3">
+            <h2>Profissionais</h2>
+            <a class="btn btn-success" th:href="@{/profissionais/criar}">Criar</a>
+        </div>
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Especialidade</th>
+                    <th>Registro</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="prof : ${profissionais}">
+                    <td th:text="${prof.nome}"></td>
+                    <td th:text="${prof.especialidade}"></td>
+                    <td th:text="${prof.registro}"></td>
+                    <td><a th:href="@{/profissionais/{id}(id=${prof.id})}" class="btn btn-primary">Editar</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer th:replace="~{fragments :: footer}"></footer>
+</body>
+
+</html>

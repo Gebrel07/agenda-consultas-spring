@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments :: head}"></head>
+
+<body>
+    <nav th:replace="~{fragments :: nav}"></nav>
+
+    <div class="container">
+        <div th:if="${successMessage}" th:insert="~{fragments :: alert('success', ${successMessage})}"></div>
+
+        <div class="d-flex justify-content-between">
+            <h2>Editar profissional</h2>
+            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-delete">Deletar</button>
+        </div>
+
+        <form th:replace="~{profissionalsaude/form-profissional :: formProfissional(${profissional})}"></form>
+    </div>
+
+    <footer th:replace="~{fragments :: footer}"></footer>
+
+    <div
+        th:replace="~{fragments :: modalDelete('Excluir profissional', 'Este profissional será excluído', @{/profissionais/{id}/deletar(id=${profissional.id})})}">
+    </div>
+</body>
+
+</html>
