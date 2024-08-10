@@ -7,7 +7,14 @@
     <nav th:replace="~{fragments :: nav}"></nav>
 
     <div class="container">
-        <h2>Home</h2>
+        <h2>Bem vindo</h2>
+
+        <div class="d-flex gap-4 flex-wrap justify-content-center">
+            <a th:href="@{/profissionais}"
+                class="decoration-none home-btn text-center text-dark border rounded p-4">Profissionais</a>
+            <a th:href="@{/pacientes}"
+                class="decoration-none home-btn text-center text-dark border rounded p-4">Pacientes</a>
+        </div>
     </div>
 
     <footer th:replace="~{fragments :: footer}"></footer>
