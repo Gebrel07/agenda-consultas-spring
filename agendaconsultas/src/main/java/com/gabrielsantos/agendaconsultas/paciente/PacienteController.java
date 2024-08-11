@@ -1,5 +1,6 @@
 package com.gabrielsantos.agendaconsultas.paciente;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
@@ -15,15 +16,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/pacientes")
 public class PacienteController {
 
-    private final PacienteRepository pacienteRepository;
+    private final PacienteService pacienteService;
 
-    public PacienteController(PacienteRepository pacienteRepository) {
-        this.pacienteRepository = pacienteRepository;
+    public PacienteController(PacienteService pacienteService) {
+        this.pacienteService = pacienteService;
     }
 
     @GetMapping
     public String listPaciente(Model model) {
-        Iterable<Paciente> pacientes = pacienteRepository.findAllByOrderByNomeAsc();
+        List<Paciente> pacientes = pacienteService.findAllPacientesOrderedByName();
         model.addAttribute("pacientes", pacientes);
         return "paciente/listar";
     }
@@ -36,14 +37,14 @@ public class PacienteController {
     @PostMapping("/criar")
     public String createPaciente(@ModelAttribute Paciente paciente,
             RedirectAttributes redirectAttributes) {
-        pacienteRepository.save(paciente);
+        pacienteService.savePaciente(paciente);
         redirectAttributes.addFlashAttribute("successMessage", "Paciente criado com sucesso!");
         return "redirect:/pacientes";
     }
 
     @GetMapping("/{id}")
     public String getPaciente(@PathVariable Long id, Model model) {
-        Optional<Paciente> paciente = pacienteRepository.findById(id);
+        Optional<Paciente> paciente = pacienteService.findPacienteById(id);
         if (paciente.isEmpty()) {
             return "error/404";
         }
@@ -54,7 +55,7 @@ public class PacienteController {
     @PostMapping("/{id}")
     public String updatePaciente(@ModelAttribute Paciente paciente,
             RedirectAttributes redirectAttributes) {
-        pacienteRepository.save(paciente);
+        pacienteService.savePaciente(paciente);
         redirectAttributes.addFlashAttribute("successMessage", "Paciente atualizado com sucesso!");
         return "redirect:/pacientes/" + paciente.getId();
     }
@@ -62,7 +63,7 @@ public class PacienteController {
     @PostMapping("/{id}/deletar")
     public String deletePaciente(@ModelAttribute Paciente paciente,
             RedirectAttributes redirectAttributes) {
-        pacienteRepository.delete(paciente);
+        pacienteService.deletePaciente(paciente.getId());
         redirectAttributes.addFlashAttribute("dangerMessage", "Paciente excluído com sucesso!");
         return "redirect:/pacientes";
     }
