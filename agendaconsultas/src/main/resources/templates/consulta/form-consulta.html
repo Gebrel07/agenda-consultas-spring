@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <div th:fragment="formConsulta(formAction, consulta, listaStatus, profissionais, pacientes)">
+        <form th:action="@{${formAction}}" th:object="${consulta}" method="post"
+            class="my-3 d-grid gap-3 border rounded p-4">
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="d-flex justify-content-between">
+                <div class="w-25">
+                    <label for="data">Data:</label>
+                    <input type="date" id="data" th:field="*{data}" class="form-control" />
+                </div>
+
+                <div class="w-25">
+                    <label for="horaInicio">Hora Início:</label>
+                    <input type="time" id="horaInicio" th:field="*{horaInicio}" class="form-control" />
+                </div>
+
+                <div class="w-25">
+                    <label for="horaFim">Hora Fim:</label>
+                    <input type="time" id="horaFim" th:field="*{horaFim}" class="form-control" />
+                </div>
+            </div>
+
+            <div>
+                <label for="descricao">Descrição:</label>
+                <input type="text" id="descricao" th:field="*{descricao}" class="form-control"></input>
+            </div>
+
+            <div>
+                <label for="observacao">Observação:</label>
+                <textarea id="observacao" th:field="*{observacao}" class="form-control"></textarea>
+            </div>
+
+            <div>
+                <label for="status">Status:</label>
+                <select id="status" th:field="*{status}" class="form-control">
+                    <option th:each="status : ${listaStatus}" th:value="${status.statusConsulta}"
+                        th:text="${status.descricao}"></option>
+                </select>
+            </div>
+
+            <div>
+                <label for="profissional">Profissional:</label>
+                <select id="profissional" th:field="*{profissional.id}" class="form-control">
+                    <option th:each="profissional : ${profissionais}" th:value="${profissional.id}"
+                        th:text="${profissional.nome}"></option>
+                </select>
+            </div>
+
+            <div>
+                <label for="paciente">Paciente:</label>
+                <select id="paciente" th:field="*{paciente.id}" class="form-control">
+                    <option th:each="paciente : ${pacientes}" th:value="${paciente.id}" th:text="${paciente.nome}">
+                    </option>
+                </select>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-success">Salvar</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

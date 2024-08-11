@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments :: head(~{})}"></head>
+
+<body>
+    <nav th:replace="~{fragments :: nav}"></nav>
+
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            <h2>Criar consulta</h2>
+        </div>
+
+        <div th:replace="~{consulta/form-consulta :: formConsulta(${formAction}, ${consulta}, ${listaStatus}, ${profissionais}, ${pacientes})}"></div>
+    </div>
+
+    <footer th:replace="~{fragments :: footer}"></footer>
+</body>
+
+</html>
