@@ -3,6 +3,8 @@ package com.gabrielsantos.agendaconsultas.consulta;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.gabrielsantos.agendaconsultas.paciente.Paciente;
 import com.gabrielsantos.agendaconsultas.profissionalsaude.ProfissionalSaude;
 
@@ -34,12 +36,15 @@ public class Consulta {
     private Long id;
 
     @Column(nullable = false)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate data;
 
     @Column(nullable = false)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime horaInicio;
 
     @Column(nullable = false)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime horaFim;
 
     private String descricao;

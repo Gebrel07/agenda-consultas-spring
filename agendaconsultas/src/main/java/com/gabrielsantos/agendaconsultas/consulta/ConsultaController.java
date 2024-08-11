@@ -82,9 +82,9 @@ public class ConsultaController {
             consultaService.saveConsulta(consulta);
             redirectAttributes.addFlashAttribute("successMessage", "Consulta salva com sucesso!");
         } catch (IllegalArgumentException e) {
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            redirectAttributes.addFlashAttribute("dangerMessage", e.getMessage());
         }
-        return "redirect:/consultas";
+        return "redirect:consultas/" + consulta.getId();
     }
 
     @PostMapping("/{id}/delete")
