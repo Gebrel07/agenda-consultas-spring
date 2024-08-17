@@ -1,12 +1,14 @@
 INSERT INTO profissionais (nome, especialidade, registro) VALUES
-    ('Profissional 1', 'Clinica geral', 'CRM-123'),
-    ('Profissional 2', 'Psiquiatria', 'CRM-456'),
-    ('Profissional 3', 'Cirurgia', 'CRM-789');
+    ('Dr. João Silva', 'Clínica Geral', 'CRM-7834'),
+    ('Dra. Ana Oliveira', 'Psiquiatria', 'CRM-7462'),
+    ('Dr. Carlos Santos', 'Cirurgia', 'CRM-9725');
+
 
 INSERT INTO pacientes (nome, cpf, idade, sexo) VALUES
-    ('Paciente 1', '11111111111', 26, 1),
-    ('Paciente 2', '22222222222', 20, 2),
-    ('Paciente 3', '33333333333', 28, 3);
+    ('Lucas Ferreira', '38972637837', 35, 1),
+    ('Mariana Costa', '39674895009', 29, 2),
+    ('Ricardo Almeida', '39759263627', 42, 1);
+
 
 INSERT INTO consultas (data, HORA_INICIO, HORA_FIM, descricao, observacao, status, profissional_id, paciente_id) VALUES
     ('2024-08-15', '09:00:00', '10:00:00', 'Consulta de rotina', 'Sem observações', 'PENDENTE', 1, 1),
