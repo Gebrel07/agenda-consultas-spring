@@ -21,6 +21,7 @@
                     <th>Data</th>
                     <th>Hora Início</th>
                     <th>Hora Fim</th>
+                    <th>Status</th>
                     <th>Paciente</th>
                     <th>Profissional</th>
                     <th></th>
@@ -31,6 +32,7 @@
                     <td th:text="${consulta.data}"></td>
                     <td th:text="${consulta.horaInicio}"></td>
                     <td th:text="${consulta.horaFim}"></td>
+                    <td th:text="${consulta.status.descricao}"></td>
                     <td th:text="${consulta.paciente.nome}"></td>
                     <td th:text="${consulta.profissional.nome}"></td>
                     <td><a th:href="@{/consultas/{id}(id=${consulta.id})}" class="btn btn-primary">Editar</a></td>
